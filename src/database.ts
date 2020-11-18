@@ -1,7 +1,7 @@
 import {Sequelize} from "sequelize-typescript"
 
-export const sequlize = new Sequelize('pay_tracker_2', 'postgres', 'postgres', {
+export const sequlize = new Sequelize('EasyKash', 'root', '', {
    host: 'localhost',
-   dialect: 'postgres',
+   dialect: 'mysql',
    models: [__dirname + '/models'] 
 });
