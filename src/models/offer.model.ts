@@ -1,21 +1,22 @@
 import { Model, Table, AutoIncrement, PrimaryKey, Column, AllowNull, NotEmpty } from "sequelize-typescript";
 
-export interface UserI{
+export interface OfferI{
     id?: number | null
-    first_name: string
-    last_name: string
-    email: string
-    password: string
+    title: string
+    fees: number
+    amount: number
+    last_updated: Date
 }
 
 @Table(
     {
-        tableName: "user",
+        tableName: "offer",
         timestamps: true
     }
 )
-export default class User extends Model implements UserI{
+export default class Offer extends Model implements OfferI{
     
+    @AllowNull(false)
     @AutoIncrement
     @PrimaryKey
     @Column
@@ -24,21 +25,20 @@ export default class User extends Model implements UserI{
     @AllowNull(false)
     @NotEmpty
     @Column
-    first_name!: string
+    title!: string
+    
+    @AllowNull(false)
+    @NotEmpty
+    @Column
+    fees!: number
+    
+    @AllowNull(false)
+    @NotEmpty
+    @Column
+    amount!: number
 
     @AllowNull(false)
     @NotEmpty
     @Column
-    last_name!: string;
-
-    @AllowNull(false)
-    @NotEmpty
-    @Column
-    email!: string;
-
-    @AllowNull(false)
-    @NotEmpty
-    @Column
-    password!: string;
-
+    last_updated!: Date
 }

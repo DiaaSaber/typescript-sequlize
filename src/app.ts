@@ -1,21 +1,21 @@
 import * as express from "express"
-import { sequlize } from "./database"
+import { sequelize } from "./database"
 
 const app = express()
+const port = 3000;
 
-
-app.listen(8080, () => {
-    console.log(`App runing at http://localhost:8080`)
-    sequlize.authenticate().then(async() => {
+app.listen(port, () => {
+    console.log(`App runing at http://localhost:${port}`);
+    sequelize.authenticate().then(async() => {
         console.log("Database Connected Successfully!")
 
         try {
-            await sequlize.sync({force: true})
+            await sequelize.sync({force: true})
         } catch (error) {
-            console.log(error.message + "ERROORRRRRR1");
+            console.log("Error : " + error.message);
         }
 
     }).catch( (e: any) => {
-        console.log(e.message + "ERROORRRRRR22222");
+        console.log("Error : " + e.message);
     })
 })
